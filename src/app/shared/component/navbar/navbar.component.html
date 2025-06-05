@@ -1,0 +1,32 @@
+<nav *ngIf="isLoggedIn()" class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid container-xxl">
+    <span class="navbar-brand" [routerLink]="'/dashboard'" style="cursor: pointer">Farmacia</span>
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-controls="navbarContent"
+      [attr.aria-expanded]="!collapsed"
+      aria-label="Toggle navigation"
+      (click)="collapsed = !collapsed"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item me-3">
+          <a class="nav-link">
+            <i class="fa-solid fa-circle-user me-1"></i>
+            Bienvenido(a), {{ displayName() }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" role="button" (click)="logout()">
+            <i class="fa-solid fa-power-off me-1"></i>
+            Cerrar sesión
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

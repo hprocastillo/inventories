@@ -1,0 +1,112 @@
+<!--*****************************-->
+<!--********** HEADER ***********-->
+<div class="card shadow rounded border-light-subtle p-3 mb-3">
+  <div class="row">
+
+    <!-- TITLE - NAV -->
+    <div class="col-6 d-flex align-items-start">
+      <nav class="ms-1" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb pb-0 mb-0">
+          <li class="breadcrumb-item fs-5">
+            <a href="/dashboard" class="text-decoration-none text-dark">
+              <i class="fa-solid fa-house me-1"></i>
+              Inicio
+            </a>
+          </li>
+          <li class="breadcrumb-item active fs-5" aria-current="page">
+            Productos
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="col-6 d-flex justify-content-end">
+
+      <!-- FILTER -->
+      <button type="button" class="btn btn-secondary me-2">
+        <i class="fa-solid fa-sliders"></i>
+        Filtros
+      </button>
+
+      <!-- IMPORT -->
+      <button type="button" class="btn btn-success">
+        <i class="fa-solid fa-file-excel"></i>
+        Importar
+      </button>
+
+    </div>
+  </div>
+</div>
+
+
+<!--**************************-->
+<!--********** LIST **********-->
+<div class="card shadow rounded border-light-subtle p-3">
+
+  <!-- TABLE -->
+  <div class="table-responsive mb-3">
+    <table class="table table-striped text-center">
+      <thead>
+      <tr class="text-nowrap">
+        <th scope="col">#</th>
+        <th scope="col">BARRAS</th>
+        <th scope="col">CODIGO</th>
+        <th scope="col">DESCRIPCION</th>
+        <th scope="col">LABORATORIO</th>
+        <th scope="col">REGISTRADO POR</th>
+        <th scope="col">FECHA REGISTRO</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-nowrap">
+        <th scope="row">1</th>
+        <td>182739123981723</td>
+        <td>PPD</td>
+        <td>Aspirina Forte 500 mlg</td>
+        <td>BAYER</td>
+        <td>Herbert Pro</td>
+        <td>Mayo, 5 - 2025</td>
+      </tr>
+      <tr class="text-nowrap">
+        <th scope="row">1</th>
+        <td>34534635636</td>
+        <td>PLD</td>
+        <td>Crema dental Kolinos 550gm</td>
+        <td>Colgate</td>
+        <td>Herbert Pro</td>
+        <td>Mayo, 5 - 2025</td>
+      </tr>
+      <tr class="text-nowrap">
+        <th scope="row">1</th>
+        <td>182739123981723</td>
+        <td>PPD</td>
+        <td>Aspirina Forte 500 mlg</td>
+        <td>BAYER</td>
+        <td>Herbert Pro</td>
+        <td>Mayo, 5 - 2025</td>
+      </tr>
+      <tr class="text-nowrap">
+        <th scope="row">1</th>
+        <td>182739123981723</td>
+        <td>PPD</td>
+        <td>Aspirina Forte 500 mlg</td>
+        <td>BAYER</td>
+        <td>Herbert Pro</td>
+        <td>Mayo, 5 - 2025</td>
+      </tr>
+      <tr class="text-nowrap">
+        <th scope="row">1</th>
+        <td>182739123981723</td>
+        <td>PPD</td>
+        <td>Aspirina Forte 500 mlg</td>
+        <td>BAYER</td>
+        <td>Herbert Pro</td>
+        <td>Mayo, 5 - 2025</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <!--  <ngb-pagination [collectionSize]="filteredProducts.length || 0" [(page)]="page" [pageSize]="pageSize"/>-->
+</div>
