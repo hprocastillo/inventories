@@ -1,9 +1,12 @@
 import {Routes} from '@angular/router';
-import {NoAuthGuard} from './modules/auth/guards/no-auth.guard';
-import {AuthGuard} from '@angular/fire/auth-guard';
 import {PageNotFoundComponent} from './shared/component/page-not-found/page-not-found.component';
+import {AuthGuard} from './modules/auth/guards/auth.guard';
+import {NoAuthGuard} from './modules/auth/guards/no-auth.guard';
 
 export const routes: Routes = [
+  {
+    path: '', redirectTo: '/dashboard', pathMatch: 'full',
+  },
   {
     path: 'auth',
     canActivate: [NoAuthGuard],
@@ -29,9 +32,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./modules/inventories/inventories.routes').then(m => m.INVENTORIES_ROUTES),
   },
-  {
-    path: '', redirectTo: 'dashboard', pathMatch: 'full',
-  },
+
   {
     path: '**', component: PageNotFoundComponent
   }

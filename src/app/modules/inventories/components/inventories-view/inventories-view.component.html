@@ -1,1 +1,159 @@
-<p>inventories-view works!</p>
+<!--*****************************-->
+<!--********** HEADER ***********-->
+<div class="card shadow rounded border-light-subtle p-3 mb-2">
+  <div class="row">
+    <!-- TITLE - NAV -->
+    <div class="col-6 d-flex align-items-start">
+      <nav
+        class="ms-1"
+        style="--bs-breadcrumb-divider: '>'"
+        aria-label="breadcrumb"
+      >
+        <ol class="breadcrumb pb-0 mb-0">
+          <li class="breadcrumb-item fs-5">
+            <a href="/dashboard" class="text-decoration-none text-dark">
+              <i class="fa-solid fa-house me-1"></i>
+              Inicio
+            </a>
+          </li>
+          <li class="breadcrumb-item fs-5" style="cursor: pointer;" aria-current="page" (click)="location.back()">
+            Inventarios
+          </li>
+          <li class="breadcrumb-item active fs-5" aria-current="page">
+            {{ inventoryId }}
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <!-- BUTTONS -->
+    <div class="col-6 d-flex justify-content-end">
+
+      <div class="me-2">
+        <input type="text" class="form-control" placeholder="Escanear producto" autofocus>
+      </div>
+
+      <!-- SAVE -->
+      <button type="button" class="btn btn-primary me-2">
+        <i class="fa-solid fa-floppy-disk"></i>
+        Guardar
+      </button>
+
+      <!-- CERRAR -->
+      <button type="button" class="btn btn-danger me-2">
+        <i class="fa-solid fa-unlock"></i>
+        Cerrar
+      </button>
+
+      <!-- EXPORT -->
+      <button type="button" class="btn btn-success">
+        <i class="fa-solid fa-file-excel"></i>
+        Exportar
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<!--**************************-->
+<!--********** BODY **********-->
+<div class="row">
+  <div class="col-12">
+    <!--**************************-->
+    <!--********** LIST **********-->
+    <div class="card shadow rounded border-light-subtle p-3">
+      <!-- TABLE -->
+      <div class="table-responsive mb-3">
+        <table class="table table-striped text-center">
+          <thead>
+          <tr class="text-nowrap">
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+
+            <th scope="col">BARRA</th>
+            <th scope="col">CODIGO</th>
+            <th scope="col">DESCRIPCION</th>
+            <th scope="col">LABORATORIO</th>
+            <th scope="col">C. ENTERO</th>
+            <th scope="col">C. FRACCIÓN</th>
+            <th scope="col">OBSERVACIONES</th>
+            <th scope="col">REGISTRADO POR</th>
+            <th scope="col">FECHA REGISTRO</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-nowrap">
+            <th scope="row">3</th>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm">
+                <i class="fa-solid fa-floppy-disk"></i>
+              </button>
+            </td>
+            <td>182739123981723</td>
+            <td>PPD</td>
+            <td>Aspirina Forte 500 mlg</td>
+            <td>BAYER</td>
+            <td>
+              <input type="text" class="form-control">
+            </td>
+            <td><input type="text" class="form-control"></td>
+            <td><input type="text" class="form-control"></td>
+            <td>Herbert Pro</td>
+            <td>Mayo, 5 - 2025</td>
+          </tr>
+          <tr class="text-nowrap">
+            <th scope="row">1</th>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-floppy-disk"></i>
+              </button>
+            </td>
+            <td>182739123981723</td>
+            <td>PPD</td>
+            <td>Aspirina Forte 500 mlg</td>
+            <td>BAYER</td>
+            <td>3</td>
+            <td>97</td>
+            <td>sin observaciones</td>
+            <td>Herbert Pro</td>
+            <td>Mayo, 5 - 2025</td>
+          </tr>
+          <tr class="text-nowrap">
+            <th scope="row">2</th>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-floppy-disk"></i>
+              </button>
+            </td>
+            <td>23423542423423</td>
+            <td>JPT</td>
+            <td>Jarabe Expectorante</td>
+            <td>VIK</td>
+            <td>20</td>
+            <td>3</td>
+            <td>todo estaba correcto</td>
+            <td>Herbert Pro</td>
+            <td>Mayo, 5 - 2025</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--  <ngb-pagination [collectionSize]="filteredProducts.length || 0" [(page)]="page" [pageSize]="pageSize"/>-->
+    </div>
+  </div>
+</div>

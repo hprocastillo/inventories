@@ -14,7 +14,7 @@
             </a>
           </li>
           <li class="breadcrumb-item active fs-5" aria-current="page">
-            Movimientos
+            Inventarios
           </li>
         </ol>
       </nav>
@@ -28,18 +28,117 @@
         <i class="fa-solid fa-sliders"></i>
         Filtros
       </button>
-
-      <!-- NEW -->
-      <button type="button" class="btn btn-primary me-2">
-        <i class="fa-solid fa-plus"></i>
-        Nuevo
-      </button>
-
-      <!-- EXPORT -->
-      <button type="button" class="btn btn-success me-2">
-        <i class="fa-solid fa-file-excel"></i>
-        Exportar
-      </button>
     </div>
   </div>
 </div>
+
+
+<!--**************************-->
+<!--********** LIST **********-->
+<div class="row">
+  <div class="col-4">
+    <div class="card shadow rounded border-light-subtle p-3">
+      <p class="fw-medium mb-1">Nuevo Inventario</p>
+      <hr class="text-muted mt-0 mb-3"/>
+
+      <!-- Store -->
+      <div class="form-floating mb-3">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+        >
+          <option selected>CHORRILLOS 01</option>
+          <option value="1">CHORRILLOS 01</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="floatingSelect">Selecciona tienda</label>
+      </div>
+
+      <!-- Code -->
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="codeInput"
+          [value]="'Ejemplo: INV-CHO01-003'"
+        />
+        <label for="codeInput">Codigo</label>
+      </div>
+
+      <!-- Buttons -->
+      <div class="row">
+        <div class="col">
+          <button type="reset" class="btn btn-secondary w-100">
+            <i class="fa-solid fa-xmark"></i>
+            Cancelar
+          </button>
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-success w-100">
+            <i class="fa-solid fa-floppy-disk"></i>
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="card shadow rounded border-light-subtle p-3">
+
+      <!-- TABLE -->
+      <div class="table-responsive mb-3">
+        <table class="table table-striped text-center">
+          <thead>
+          <tr class="text-nowrap">
+            <th scope="col">#</th>
+            <th scope="col">CODIGO</th>
+            <th scope="col">TIENDA</th>
+            <th scope="col">DETALLE</th>
+            <th scope="col">REGISTRADO POR</th>
+            <th scope="col">FECHA REGISTRO</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-nowrap">
+            <th scope="row">1</th>
+            <td>INV-CHO01-001</td>
+            <td>CHORRILLOS 01</td>
+            <td>
+              <a class="text-decoration-none text-success fw-bold"
+                 [routerLink]="['/inventories/view','INV-CHO01-001' ]">Abierto</a>
+            </td>
+            <td>Herbert Pro</td>
+            <td>Mayo, 5 - 2025</td>
+          </tr>
+          <tr class="text-nowrap">
+            <th scope="row">2</th>
+            <td>INV-BAR02-002</td>
+            <td>BARRANCO 02</td>
+            <td>
+              <a class="text-decoration-none text-secondary" href="#">Cerrado</a>
+            </td>
+            <td>Herbert Pro</td>
+            <td>Mayo, 5 - 2025</td>
+          </tr>
+          <tr class="text-nowrap">
+            <th scope="row">3</th>
+            <td>INV-SUR02-003</td>
+            <td>SURCO 02</td>
+            <td>
+              <a class="text-decoration-none text-secondary" href="#">Cerrado</a>
+            </td>
+            <td>Herbert Pro</td>
+            <td>Mayo, 5 - 2025</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--  <ngb-pagination [collectionSize]="filteredProducts.length || 0" [(page)]="page" [pageSize]="pageSize"/>-->
+    </div>
+  </div>
+</div>
+
+
+
