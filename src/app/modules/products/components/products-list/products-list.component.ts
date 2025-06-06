@@ -5,9 +5,7 @@ import {NgForOf} from '@angular/common';
 @Component({
   selector: 'app-products-list',
   imports: [
-    NgbPagination,
-    NgForOf
-  ],
+     ],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.scss'
 })

@@ -30,7 +30,7 @@ export const routes: Routes = [
     loadChildren: () => import('./modules/inventories/inventories.routes').then(m => m.INVENTORIES_ROUTES),
   },
   {
-    path: '', redirectTo: 'auth', pathMatch: 'full',
+    path: '', redirectTo: 'dashboard', pathMatch: 'full',
   },
   {
     path: '**', component: PageNotFoundComponent
