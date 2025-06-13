@@ -1,1 +1,85 @@
-<p>stores-new works!</p>
+<p class="fw-medium mb-1">Nueva Tienda</p>
+<hr class="text-muted mt-0 mb-3"/>
+
+<!-- Department -->
+<div class="form-floating mb-3">
+  <select
+    class="form-select"
+    id="departmentSelect"
+    [(ngModel)]="departamentoSeleccionado"
+    (change)="onDepartamentoChange($any($event.target).value)"
+  >
+    <option [ngValue]="null" disabled selected>Departamento</option>
+    <option *ngFor="let dep of departamentos" [value]="dep.code">{{ dep.name }}</option>
+  </select>
+  <label for="departmentSelect">Selecciona</label>
+</div>
+
+
+<!-- Province -->
+<div class="form-floating mb-3">
+  <select
+    class="form-select"
+    id="provinceSelect"
+    [(ngModel)]="provinciaSeleccionada"
+    (change)="onProvinciaChange($any($event.target).value)"
+    [disabled]="!provincias.length"
+  >
+    <option [ngValue]="null" disabled selected>Provincia</option>
+    <option *ngFor="let prov of provincias" [value]="prov.code">{{ prov.name }}</option>
+  </select>
+  <label for="provinceSelect">Selecciona</label>
+</div>
+
+<!-- District -->
+<div class="form-floating mb-3">
+  <select
+    class="form-select"
+    id="districtSelect"
+    [(ngModel)]="distritoSeleccionado"
+    (change)="onDistritoChange($any($event.target).value)"
+    [disabled]="!distritos.length"
+  >
+    <option [ngValue]="null" disabled selected>Distrito</option>
+    <option *ngFor="let dist of distritos" [value]="dist.code">{{ dist.name }}</option>
+  </select>
+  <label for="districtSelect">Selecciona</label>
+</div>
+
+<!-- Code -->
+<div class="form-floating mb-3">
+  <input
+    type="text"
+    class="form-control"
+    id="codeInput"
+    [value]="'Ejemplo: BCHO3'"
+  />
+  <label for="codeInput">Codigo</label>
+</div>
+
+<!-- Name -->
+<div class="form-floating mb-3">
+  <input
+    type="text"
+    class="form-control"
+    id="nameInput"
+    [value]="'Ejemplo: CHORRILLOS 03'"
+  />
+  <label for="nameInput">Nombre de tienda</label>
+</div>
+
+<!-- Buttons -->
+<div class="row">
+  <div class="col">
+    <button type="reset" class="btn btn-secondary w-100">
+      <i class="fa-solid fa-xmark"></i>
+      Cancelar
+    </button>
+  </div>
+  <div class="col">
+    <button type="submit" class="btn btn-success w-100">
+      <i class="fa-solid fa-floppy-disk"></i>
+      Guardar
+    </button>
+  </div>
+</div>

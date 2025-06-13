@@ -30,61 +30,13 @@
 <div class="row">
   <div class="col-4">
     <div class="card shadow rounded border-light-subtle p-3">
-      <p class="fw-medium mb-1">Nueva Tienda</p>
-      <hr class="text-muted mt-0 mb-3" />
 
-      <!-- District -->
-      <div class="form-floating mb-3">
-        <select
-          class="form-select"
-          id="floatingSelect"
-          aria-label="Floating label select example"
-        >
-          <option selected>Chorrillos</option>
-          <option value="1">Chorrillos</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-        <label for="floatingSelect">Selecciona distrito</label>
-      </div>
+      @if (template === "NEW") {
+        <app-stores-new></app-stores-new>
+      } @else {
+        <app-stores-edit></app-stores-edit>
+      }
 
-      <!-- Code -->
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control"
-          id="codeInput"
-          [value]="'Ejemplo: BCHO3'"
-        />
-        <label for="codeInput">Codigo</label>
-      </div>
-
-      <!-- Name -->
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control"
-          id="nameInput"
-          [value]="'Ejemplo: CHORRILLOS 03'"
-        />
-        <label for="nameInput">Nombre de tienda</label>
-      </div>
-
-      <!-- Buttons -->
-      <div class="row">
-        <div class="col">
-          <button type="reset" class="btn btn-secondary w-100">
-            <i class="fa-solid fa-xmark"></i>
-            Cancelar
-          </button>
-        </div>
-        <div class="col">
-          <button type="submit" class="btn btn-success w-100">
-            <i class="fa-solid fa-floppy-disk"></i>
-            Guardar
-          </button>
-        </div>
-      </div>
     </div>
   </div>
   <div class="col-8">
@@ -95,56 +47,40 @@
       <div class="table-responsive mb-3">
         <table class="table table-striped text-center">
           <thead>
-            <tr class="text-nowrap">
-              <th scope="col">#</th>
-              <th scope="col">CODIGO</th>
-              <th scope="col">NOMBRE</th>
-              <th scope="col">DISTRITO</th>
-              <th scope="col">REGISTRADO POR</th>
-              <th scope="col">FECHA REGISTRO</th>
-            </tr>
+          <tr class="text-nowrap">
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">CÓDIGO</th>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">DISTRITO</th>
+            <th scope="col">PROVINCIA</th>
+            <th scope="col">DEPARTAMENTO</th>
+            <th scope="col">REGISTRADO POR</th>
+            <th scope="col">FECHA REGISTRO</th>
+          </tr>
           </thead>
           <tbody>
-            <tr class="text-nowrap">
-              <th scope="row">1</th>
-              <td>BCHO1</td>
-              <td>CHORRILLOS 01</td>
-              <td>Chorrillos</td>
-              <td>Herbert Pro</td>
-              <td>Mayo, 5 - 2025</td>
-            </tr>
-            <tr class="text-nowrap">
-              <th scope="row">2</th>
-              <td>BCHO2</td>
-              <td>CHORRILLOS 02</td>
-              <td>Chorrillos</td>
-              <td>Herbert Pro</td>
-              <td>Mayo, 5 - 2025</td>
-            </tr>
-            <tr class="text-nowrap">
-              <th scope="row">3</th>
-              <td>BBAR1</td>
-              <td>BARRANCO 01</td>
-              <td>Barranco</td>
-              <td>Herbert Pro</td>
-              <td>Mayo, 5 - 2025</td>
-            </tr>
-            <tr class="text-nowrap">
-              <th scope="row">4</th>
-              <td>BBAR2</td>
-              <td>BARRANCO 02</td>
-              <td>Barranco</td>
-              <td>Herbert Pro</td>
-              <td>Mayo, 5 - 2025</td>
-            </tr>
-            <tr class="text-nowrap">
-              <th scope="row">5</th>
-              <td>BSUR1</td>
-              <td>SURCO 01</td>
-              <td>Surco</td>
-              <td>Herbert Pro</td>
-              <td>Mayo, 5 - 2025</td>
-            </tr>
+          <tr class="text-nowrap" *ngFor="let store of (stores$ | async);  let i=  index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm" (click)="onEdit(store)">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(store.id)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+            <td>{{ store.code }}</td>
+            <td>{{ store.name }}</td>
+            <td>{{ store.district }}</td>
+            <td>{{ store.province }}</td>
+            <td>{{ store.state }}</td>
+            <td>{{ store.createdBy }}</td>
+            <td>{{ store.createdAt.toDate() | date:'medium' }}</td>
+          </tr>
           </tbody>
         </table>
       </div>
