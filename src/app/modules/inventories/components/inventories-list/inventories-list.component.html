@@ -1,6 +1,6 @@
 <!--*****************************-->
 <!--********** HEADER ***********-->
-<div class="card shadow rounded border-light-subtle p-3 mb-3">
+<div class="card shadow rounded border-light-subtle ps-3 pt-3 pe-3 pb-2 mb-2">
   <div class="row">
 
     <!-- TITLE - NAV -->
@@ -23,8 +23,14 @@
     <!-- BUTTONS -->
     <div class="col-6 d-flex justify-content-end">
 
+      <!-- NEW -->
+      <button type="button" class="btn btn-primary me-2" (click)="router.navigate(['/inventories/new'])">
+        <i class="fa-solid fa-plus"></i>
+        Nuevo
+      </button>
+
       <!-- FILTER -->
-      <button type="button" class="btn btn-secondary me-2">
+      <button type="button" class="btn btn-secondary">
         <i class="fa-solid fa-sliders"></i>
         Filtros
       </button>
@@ -35,110 +41,82 @@
 
 <!--**************************-->
 <!--********** LIST **********-->
-<div class="row">
-  <div class="col-4">
-    <div class="card shadow rounded border-light-subtle p-3">
-      <p class="fw-medium mb-1">Nuevo Inventario</p>
-      <hr class="text-muted mt-0 mb-3"/>
+<div class="card shadow rounded border-light-subtle p-3">
 
-      <!-- Store -->
-      <div class="form-floating mb-3">
-        <select
-          class="form-select"
-          id="floatingSelect"
-          aria-label="Floating label select example"
-        >
-          <option selected>CHORRILLOS 01</option>
-          <option value="1">CHORRILLOS 01</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-        <label for="floatingSelect">Selecciona tienda</label>
-      </div>
+  <!-- TABLE -->
+  <div class="table-responsive mb-3">
+    <table class="table table-striped text-center">
+      <thead>
+      <tr class="text-nowrap">
+        <th scope="col">#</th>
+        <th scope="col">CÓDIGO</th>
+        <th scope="col">TIENDA</th>
+        <th scope="col">ESTADO</th>
+        <th scope="col">PRODUCTOS CONTADOS</th>
+        <th scope="col">F. INICIO</th>
+        <th scope="col">F. CIERRE</th>
+        <th scope="col">REGISTRADO POR</th>
+        <th scope="col">ÚLTIMA ACTUALIZACIÓN</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-nowrap">
+        <th scope="row">3</th>
+        <td>INV-CHO-003</td>
+        <td>CHORRILLOS 01</td>
+        <td>
+          <a class="text-decoration-none text-success fw-medium"
+             [routerLink]="['/inventories/view','INV-CHO01-001' ]">Abierto</a>
+        </td>
+        <td>
+          <span class="text-success fw-medium">356</span>
+          <span> / </span>
+          <span class="text-danger fw-medium">380</span>
+        </td>
+        <td>Junio, 1 - 2025</td>
+        <td>Junio, 5 - 2025</td>
+        <td>Herbert Pro</td>
+        <td>Junio, 5 - 2025</td>
+      </tr>
+      <tr class="text-nowrap">
+        <th scope="row">2</th>
+        <td>INV-BAR-002</td>
+        <td>BARRANDO 04</td>
+        <td>
+          <a class="text-decoration-none text-secondary fw-medium"
+             [routerLink]="['/inventories/view','INV-CHO01-001' ]">Cerrado</a>
+        </td>
+        <td>
+          <span class="text-success fw-medium">890</span>
+          <span> / </span>
+          <span class="text-danger fw-medium">1034</span>
+        </td>
+        <td>Mayo, 1 - 2025</td>
+        <td>Mayo, 5 - 2025</td>
+        <td>Herbert Pro</td>
+        <td>Mayo, 5 - 2025</td>
+      </tr>
+      <tr class="text-nowrap">
+        <th scope="row">1</th>
+        <td>INV-CHO-004</td>
+        <td>CHORRILLOS 04</td>
+        <td>
+          <a class="text-decoration-none text-secondary fw-medium"
+             [routerLink]="['/inventories/view','INV-CHO01-001' ]">Cerrado</a>
+        </td>
+        <td>
+          <span class="text-success fw-medium">200</span>
+          <span> / </span>
+          <span class="text-danger fw-medium">400</span>
+        </td>
+        <td>Abril, 1 - 2025</td>
+        <td>Abril, 5 - 2025</td>
+        <td>Herbert Pro</td>
+        <td>Abril, 5 - 2025</td>
+      </tr>
 
-      <!-- Code -->
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control"
-          id="codeInput"
-          [value]="'Ejemplo: INV-CHO01-003'"
-        />
-        <label for="codeInput">Codigo</label>
-      </div>
-
-      <!-- Buttons -->
-      <div class="row">
-        <div class="col">
-          <button type="reset" class="btn btn-secondary w-100">
-            <i class="fa-solid fa-xmark"></i>
-            Cancelar
-          </button>
-        </div>
-        <div class="col">
-          <button type="submit" class="btn btn-success w-100">
-            <i class="fa-solid fa-floppy-disk"></i>
-            Guardar
-          </button>
-        </div>
-      </div>
-    </div>
+      </tbody>
+    </table>
   </div>
-  <div class="col-8">
-    <div class="card shadow rounded border-light-subtle p-3">
-
-      <!-- TABLE -->
-      <div class="table-responsive mb-3">
-        <table class="table table-striped text-center">
-          <thead>
-          <tr class="text-nowrap">
-            <th scope="col">#</th>
-            <th scope="col">CODIGO</th>
-            <th scope="col">TIENDA</th>
-            <th scope="col">DETALLE</th>
-            <th scope="col">REGISTRADO POR</th>
-            <th scope="col">FECHA REGISTRO</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr class="text-nowrap">
-            <th scope="row">1</th>
-            <td>INV-CHO01-001</td>
-            <td>CHORRILLOS 01</td>
-            <td>
-              <a class="text-decoration-none text-success fw-bold"
-                 [routerLink]="['/inventories/view','INV-CHO01-001' ]">Abierto</a>
-            </td>
-            <td>Herbert Pro</td>
-            <td>Mayo, 5 - 2025</td>
-          </tr>
-          <tr class="text-nowrap">
-            <th scope="row">2</th>
-            <td>INV-BAR02-002</td>
-            <td>BARRANCO 02</td>
-            <td>
-              <a class="text-decoration-none text-secondary" href="#">Cerrado</a>
-            </td>
-            <td>Herbert Pro</td>
-            <td>Mayo, 5 - 2025</td>
-          </tr>
-          <tr class="text-nowrap">
-            <th scope="row">3</th>
-            <td>INV-SUR02-003</td>
-            <td>SURCO 02</td>
-            <td>
-              <a class="text-decoration-none text-secondary" href="#">Cerrado</a>
-            </td>
-            <td>Herbert Pro</td>
-            <td>Mayo, 5 - 2025</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--  <ngb-pagination [collectionSize]="filteredProducts.length || 0" [(page)]="page" [pageSize]="pageSize"/>-->
-    </div>
-  </div>
+  <!--  <ngb-pagination [collectionSize]="filteredProducts.length || 0" [(page)]="page" [pageSize]="pageSize"/>-->
 </div>
-
-
-

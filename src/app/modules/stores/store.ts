@@ -8,6 +8,10 @@ export interface Store {
   province: string;
   state: string;
 
+  districtName?: string;
+  provinceName?: string;
+  stateName?: string;
+
   createdBy: string;
   createdAt: Timestamp;
 }

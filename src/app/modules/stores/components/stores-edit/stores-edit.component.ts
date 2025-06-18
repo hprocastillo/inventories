@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-stores-edit',
@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './stores-edit.component.html',
   styleUrl: './stores-edit.component.scss'
 })
-export class StoresEditComponent {
-
+export class StoresEditComponent{
 }

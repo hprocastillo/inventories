@@ -1,0 +1,144 @@
+<!--*****************************-->
+<!--********** HEADER ***********-->
+<div class="card shadow rounded border-light-subtle p-3 mb-2">
+  <div class="row">
+
+    <!-- TITLE - NAV -->
+    <div class="col-12 d-flex align-items-start">
+      <nav class="ms-1" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb pb-0 mb-0">
+          <li class="breadcrumb-item fs-5">
+            <a href="/dashboard" class="text-decoration-none text-dark">
+              <i class="fa-solid fa-house me-1"></i>
+              Inicio
+            </a>
+          </li>
+          <li class="breadcrumb-item fs-5" (click)="location.back()" style="cursor:pointer;">
+            Inventarios
+          </li>
+          <li class="breadcrumb-item active fs-5" aria-current="page">
+            Nuevo
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="inventoryForm" (ngSubmit)="saveInventory()">
+<!--***************************-->
+<!--********** FORM ***********-->
+<div class="card shadow rounded border-light-subtle p-3">
+  <div class="row">
+    <div class="col-4">
+
+      <!-- Store -->
+      <div class="form-floating mb-3">
+        <select
+          class="form-select"
+          id="storeSelect"
+          aria-label="Floating label select example"
+          formControlName="store"
+        >
+          <option value="" disabled selected>Selecciona tienda</option>
+          <option *ngFor="let store of stores" [value]="store.id">{{ store.name }}</option>
+        </select>
+        <label for="storeSelect">Selecciona tienda</label>
+      </div>
+
+      <!-- Code -->
+      <div class="form-floating mb-3">
+         <input
+          id="codeInput"
+          class="form-control"
+          [value]="generatedCode"
+          readonly
+          tabindex="-1"
+          placeholder="Código"
+        />
+        <label for="codeInput">Código</label>
+      </div>
+
+      <div class="mb-4">
+        <label for="formFile" class="form-label">Importar base de datos (archivo .xls)</label>
+        <input class="form-control" type="file" id="formFile">
+      </div>
+
+      <div class="mb-4">
+        <p>Productos: 2348 por contar.</p>
+      </div>
+
+      <!-- Buttons -->
+      <div class="row">
+        <div class="col">
+          <button type="reset" class="btn btn-secondary w-100">
+            <i class="fa-solid fa-xmark"></i>
+            Cancelar
+          </button>
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-success w-100">
+            <i class="fa-solid fa-floppy-disk"></i>
+            Guardar
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-7 offset-1">
+      <!-- TABLE -->
+      <div class="table-responsive mb-3">
+        <table class="table table-striped text-center">
+          <thead>
+          <tr class="text-nowrap">
+            <th scope="col">#</th>
+            <th scope="col">BARRAS</th>
+            <th scope="col">CÓDIGO</th>
+            <th scope="col">DESCRIPCIÓN</th>
+            <th scope="col">LABORATORIO</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-nowrap">
+            <th scope="row">1</th>
+            <td>182739123981723</td>
+            <td>PPD</td>
+            <td>Aspirina Forte 500 mlg</td>
+            <td>BAYER</td>
+          </tr>
+          <tr class="text-nowrap">
+            <th scope="row">2</th>
+            <td>34534635636</td>
+            <td>PLD</td>
+            <td>Crema dental Kolinos 550gm</td>
+            <td>COLGATE</td>
+          </tr>
+          <tr class="text-nowrap">
+            <th scope="row">3</th>
+            <td>182739123981723</td>
+            <td>PPN</td>
+            <td>Huggies pañales 24</td>
+            <td>Protect and gamble</td>
+          </tr>
+          <tr class="text-nowrap">
+            <th scope="row">4</th>
+            <td>23423542423423</td>
+            <td>JPT</td>
+            <td>Jarabe Expectorante</td>
+            <td>VIK</td>
+
+          </tr>
+          <tr class="text-nowrap">
+            <th scope="row">5</th>
+            <td>090912739127312</td>
+            <td>PPG</td>
+            <td>Cetirizina 10mg</td>
+            <td>BAGOO</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

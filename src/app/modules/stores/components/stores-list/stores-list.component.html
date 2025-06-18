@@ -31,12 +31,16 @@
   <div class="col-4">
     <div class="card shadow rounded border-light-subtle p-3">
 
-      @if (template === "NEW") {
-        <app-stores-new></app-stores-new>
-      } @else {
-        <app-stores-edit></app-stores-edit>
-      }
+      <ng-container *ngIf="template() === 'NEW'; else editBlock">
+        <app-stores-new
+          (saved)="onSavedOrUpdated()"
+        ></app-stores-new>
+      </ng-container>
 
+      <ng-template #editBlock>
+        <app-stores-edit></app-stores-edit>
+
+      </ng-template>
     </div>
   </div>
   <div class="col-8">
@@ -61,7 +65,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr class="text-nowrap" *ngFor="let store of (stores$ | async);  let i=  index">
+          <tr class="text-nowrap" *ngFor="let store of stores;  let i=  index">
             <th scope="row">{{ i + 1 }}</th>
             <td>
               <button type="button" class="btn btn-primary btn-sm" (click)="onEdit(store)">
@@ -75,9 +79,9 @@
             </td>
             <td>{{ store.code }}</td>
             <td>{{ store.name }}</td>
-            <td>{{ store.district }}</td>
-            <td>{{ store.province }}</td>
-            <td>{{ store.state }}</td>
+            <td>{{ store.districtName }}</td>
+            <td>{{ store.provinceName }}</td>
+            <td>{{ store.stateName }}</td>
             <td>{{ store.createdBy }}</td>
             <td>{{ store.createdAt.toDate() | date:'medium' }}</td>
           </tr>
