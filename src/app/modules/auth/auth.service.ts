@@ -8,9 +8,9 @@ import {
   signOut,
   User
 } from '@angular/fire/auth';
-import {doc, Firestore, getDoc, setDoc, Timestamp, updateDoc} from '@angular/fire/firestore';
+import {doc, Firestore, getDoc, setDoc, Timestamp, updateDoc,collection, collectionData} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
-
+import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -98,5 +98,11 @@ export class AuthService {
 
   get photoURL(): string | null {
     return this.userSignal()?.photoURL || null;
+  }
+
+  /** get all users from firestore **/
+  getUsers(): Observable<User[]> {
+    const usersRef = collection(this.firestore, 'users');
+    return collectionData(usersRef, {idField: 'uid'}) as Observable<User[]>;
   }
 }

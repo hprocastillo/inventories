@@ -1,7 +1,8 @@
 import {inject, Injectable} from '@angular/core';
-import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, updateDoc} from '@angular/fire/firestore';
+import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, Timestamp, updateDoc} from '@angular/fire/firestore';
 import {Store} from './store';
 import {Observable} from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import {Observable} from 'rxjs';
 export class StoresService {
   /** injects **/
   private firestore = inject(Firestore);
+  private auth = inject(AuthService);
 
   /** ************** **/
   /** get all stores **/
@@ -20,7 +22,11 @@ export class StoresService {
   /** ****************** **/
   /** create a new store **/
   createStore(store: Store) {
+    const uid = this.auth.uid;
     const ref = collection(this.firestore, 'stores');
+
+    store.createdBy = uid;
+    store.createdAt = Timestamp.now();
     return addDoc(ref, store);
   }
 

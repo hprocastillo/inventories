@@ -12,6 +12,6 @@ export interface Store {
   provinceName?: string;
   stateName?: string;
 
-  createdBy: string;
+  createdBy?: string;
   createdAt: Timestamp;
 }
