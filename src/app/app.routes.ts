@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {PageNotFoundComponent} from './shared/component/page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './shared/components/page-not-found/page-not-found.component';
 import {AuthGuard} from './modules/auth/guards/auth.guard';
 import {NoAuthGuard} from './modules/auth/guards/no-auth.guard';
 
@@ -10,12 +10,12 @@ export const routes: Routes = [
   {
     path: 'auth',
     canActivate: [NoAuthGuard],
-    loadChildren: () => import('./modules/auth/auth.routes').then(m => m.AUTH_ROUTES),
+    loadChildren: () => import('./modules/auth/routes/auth.routes').then(m => m.AUTH_ROUTES),
   },
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
-    loadComponent: () => import('./shared/component/dashboard/dashboard.component').then(m => m.DashboardComponent)
+    loadComponent: () => import('./shared/components/dashboard/dashboard.component').then(m => m.DashboardComponent)
   },
   {
     path: 'products',

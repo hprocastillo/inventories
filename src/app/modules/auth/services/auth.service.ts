@@ -100,9 +100,5 @@ export class AuthService {
     return this.userSignal()?.photoURL || null;
   }
 
-  /** get all users from firestore **/
-  getUsers(): Observable<User[]> {
-    const usersRef = collection(this.firestore, 'users');
-    return collectionData(usersRef, {idField: 'uid'}) as Observable<User[]>;
-  }
+
 }

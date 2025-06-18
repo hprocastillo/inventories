@@ -1,5 +1,5 @@
-<!--*****************************-->
-<!--********** HEADER ***********-->
+<!--********************-->
+<!--****** HEADER ******-->
 <div class="card shadow rounded border-light-subtle p-3 mb-2">
   <div class="row">
     <!-- TITLE - NAV -->
@@ -25,28 +25,20 @@
   </div>
 </div>
 
-<!--**************************-->
-<!--********** BODY **********-->
+<!--***************************-->
+<!--****** FORM AND LIST ******-->
 <div class="row">
   <div class="col-4">
     <div class="card shadow rounded border-light-subtle p-3">
-
-      <ng-container *ngIf="template() === 'NEW'; else editBlock">
-        <app-stores-new
-          (saved)="onSavedOrUpdated()"
-        ></app-stores-new>
-      </ng-container>
-
-      <ng-template #editBlock>
-        <app-stores-edit></app-stores-edit>
-
-      </ng-template>
+      @if (template === "NEW") {
+        <app-stores-new></app-stores-new>
+      } @else {
+        <app-stores-edit [store]="storeToEdit" (template)="getTemplate($event)"></app-stores-edit>
+      }
     </div>
   </div>
   <div class="col-8">
-    <!--**************************-->
-    <!--********** LIST **********-->
-    <div class="card shadow rounded border-light-subtle p-3">
+    <div class="card shadow rounded border-light-subtle p-3 pb-2">
       <!-- TABLE -->
       <div class="table-responsive mb-3">
         <table class="table table-striped text-center">
@@ -62,33 +54,55 @@
             <th scope="col">DEPARTAMENTO</th>
             <th scope="col">REGISTRADO POR</th>
             <th scope="col">FECHA REGISTRO</th>
+            <th scope="col">ACTUALIZADO POR</th>
+            <th scope="col">ÚLTIMA ACTUALIZACIÓN</th>
           </tr>
           </thead>
           <tbody>
-          <tr class="text-nowrap" *ngFor="let store of stores;  let i=  index">
-            <th scope="row">{{ i + 1 }}</th>
+          <tr class="text-nowrap"
+              *ngFor="let store of stores| slice:(page - 1) * pageSize: page * pageSize  let i=  index">
+            <th scope="row">{{ (page - 1) * pageSize + i + 1 }}</th>
             <td>
               <button type="button" class="btn btn-primary btn-sm" (click)="onEdit(store)">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
             </td>
+            <!--****************************************-->
+            <!--***** BUTTON DELETE & MODAL DELETE *****-->
             <td>
-              <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(store.id)">
+              <button type="button" class="btn btn-danger btn-sm" (click)="openDeleteModal(deleteModal,store.id)">
                 <i class="fa-solid fa-trash"></i>
               </button>
+              <ng-template #deleteModal let-modal>
+                <div class="modal-header">
+                  <h5 class="modal-title">Borrar Tienda</h5>
+                  <button type="button" class="btn-close" aria-label="Cerrar" (click)="modal.dismiss()"></button>
+                </div>
+                <div class="modal-body">
+                  <p>¿Estás seguro que deseas borrar la tienda <strong>{{ store.name }}</strong>?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" (click)="modal.close('confirm')">Sí</button>
+                  <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">No</button>
+                </div>
+              </ng-template>
             </td>
+            <!--****************************************-->
+            <!--****************************************-->
             <td>{{ store.code }}</td>
             <td>{{ store.name }}</td>
             <td>{{ store.districtName }}</td>
             <td>{{ store.provinceName }}</td>
             <td>{{ store.stateName }}</td>
-            <td>{{ store.createdBy }}</td>
-            <td>{{ store.createdAt.toDate() | date:'medium' }}</td>
+            <td>{{ store.createdByName }}</td>
+            <td *ngIf="store.createdAt">{{ store.createdAt.toDate() | date:'medium' }}</td>
+            <td>{{ store.updatedByName }}</td>
+            <td *ngIf="store.updatedAt">{{ store.updatedAt.toDate() | date:'medium' }}</td>
           </tr>
           </tbody>
         </table>
       </div>
-      <!--  <ngb-pagination [collectionSize]="filteredProducts.length || 0" [(page)]="page" [pageSize]="pageSize"/>-->
+      <ngb-pagination [collectionSize]="stores.length || 0" [(page)]="page" [pageSize]="pageSize"/>
     </div>
   </div>
 </div>

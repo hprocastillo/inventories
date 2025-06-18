@@ -8,10 +8,15 @@ export interface Store {
   province: string;
   state: string;
 
+  createdBy: string;
+  createdAt: Timestamp;
+  updatedBy: string;
+  updatedAt: Timestamp;
+
+  //enriched fields for show information
   districtName?: string;
   provinceName?: string;
   stateName?: string;
-
-  createdBy?: string;
-  createdAt: Timestamp;
+  createdByName?: string;
+  updatedByName?: string;
 }

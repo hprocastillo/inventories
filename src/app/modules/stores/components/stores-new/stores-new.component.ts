@@ -1,16 +1,12 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { UbigeoService } from '../../../../shared/services/ubigeo.service';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { NgForOf } from '@angular/common';
-import { Timestamp } from '@angular/fire/firestore';
-import { StoresService } from '../../stores.service';
-import { Store } from '../../store';
+import {Component, inject, OnInit} from '@angular/core';
+import {UbigeoService} from '../../../../shared/services/ubigeo.service';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators,} from '@angular/forms';
+import {NgForOf} from '@angular/common';
+import {StoresService} from '../../stores.service';
+import {Store} from '../../store';
+import {AuthService} from '../../../auth/services/auth.service';
+import {Timestamp} from '@angular/fire/firestore';
+import {ToastService} from '../../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-stores-new',
@@ -20,23 +16,26 @@ import { Store } from '../../store';
   styleUrl: './stores-new.component.scss',
 })
 export class StoresNewComponent implements OnInit {
+  /** injects **/
   private fb = inject(FormBuilder);
   private ubigeoService = inject(UbigeoService);
   private storesService = inject(StoresService);
+  private auth = inject(AuthService);
+  private toastService = inject(ToastService);
 
-  departamentos: any[] = [];
-  provincias: any[] = [];
-  distritos: any[] = [];
-
-  newForm: FormGroup;
+  /** varibles **/
+  public departamentos: any[] = [];
+  public provincias: any[] = [];
+  public distritos: any[] = [];
+  public newForm: FormGroup;
 
   constructor() {
     this.newForm = this.fb.group({
       code: ['', Validators.required],
       name: ['', Validators.required],
       state: ['', Validators.required],
-      province: [{ value: '', disabled: true }, Validators.required],
-      district: [{ value: '', disabled: true }, Validators.required],
+      province: [{value: '', disabled: true}, Validators.required],
+      district: [{value: '', disabled: true}, Validators.required],
     });
   }
 
@@ -69,16 +68,28 @@ export class StoresNewComponent implements OnInit {
     });
   }
 
-  async saveStore() {
-    if (this.newForm.invalid) return;
+  async toSave(): Promise<void> {
+    if (this.newForm.valid) {
+      const uid = this.auth.uid;
+      const newStore: Store = this.newForm.value;
+      newStore.createdBy = uid ?? '';
+      newStore.createdAt = Timestamp.now();
+      newStore.updatedBy = uid ?? '';
+      newStore.updatedAt = Timestamp.now();
 
-    let newStore: Store = this.newForm.value;
-    await this.storesService.createStore(newStore);
+      try {
+        await this.storesService.createStore(newStore);
+        this.newForm.reset();
+        this.newForm.get('province')?.disable();
+        this.newForm.get('district')?.disable();
+        this.toastService.showSuccess("Tienda registrada con exito!");
 
-    // Puedes limpiar el formulario o mostrar mensaje de éxito
-    this.newForm.reset();
-    this.newForm.get('province')?.disable();
-    this.newForm.get('district')?.disable();
-    alert('Tienda registrada correctamente');
+      } catch (e) {
+        this.toastService.showError(`No se pudo registrar la tienda, error: ${e}`);
+        console.log(e);
+      }
+    } else {
+      return;
+    }
   }
 }

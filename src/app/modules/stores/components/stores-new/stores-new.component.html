@@ -1,5 +1,8 @@
-<form [formGroup]="newForm" (ngSubmit)="saveStore()">
-  <!-- Departamento -->
+<p class="fw-medium">NUEVA TIENDA</p>
+
+<form [formGroup]="newForm" (ngSubmit)="toSave()">
+
+  <!-- STATE -->
   <div class="form-floating mb-3">
     <select class="form-select" id="departmentSelect" formControlName="state">
       <option value="">Departamento</option>
@@ -7,6 +10,7 @@
     </select>
     <label for="departmentSelect">Departamento</label>
   </div>
+
   <!-- Provincia -->
   <div class="form-floating mb-3">
     <select class="form-select" id="provinceSelect" formControlName="province">
@@ -15,6 +19,7 @@
     </select>
     <label for="provinceSelect">Provincia</label>
   </div>
+
   <!-- Distrito -->
   <div class="form-floating mb-3">
     <select class="form-select" id="districtSelect" formControlName="district">
@@ -23,15 +28,27 @@
     </select>
     <label for="districtSelect">Distrito</label>
   </div>
+
   <!-- Código de tienda -->
   <div class="form-floating mb-3">
-    <input class="form-control" type="text" formControlName="code" placeholder="Ejemplo: BCHO3" />
+    <input class="form-control" type="text" formControlName="code" placeholder="Ejemplo: BCHO3"/>
     <label for="code">Código</label>
   </div>
+
   <!-- Nombre de tienda -->
   <div class="form-floating mb-3">
-    <input class="form-control" type="text" formControlName="name" placeholder="Ejemplo: CHORRILLOS 03" />
+    <input class="form-control" type="text" formControlName="name" placeholder="Ejemplo: CHORRILLOS 03"/>
     <label for="name">Nombre de tienda</label>
   </div>
-  <button class="btn btn-success" type="submit" [disabled]="newForm.invalid">Guardar</button>
+
+  <!-- BUTTONS -->
+  <div class="row">
+    <div class="col-6">
+      <button type="submit" class="btn btn-success w-100" [disabled]="newForm.invalid">
+        <i class="fa-solid fa-floppy-disk me-1"></i>
+        Guardar
+      </button>
+    </div>
+  </div>
+
 </form>
