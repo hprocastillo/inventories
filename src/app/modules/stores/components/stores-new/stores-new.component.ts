@@ -1,12 +1,18 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {UbigeoService} from '../../../../shared/services/ubigeo.service';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators,} from '@angular/forms';
-import {NgForOf} from '@angular/common';
-import {StoresService} from '../../stores.service';
-import {Store} from '../../store';
-import {AuthService} from '../../../auth/services/auth.service';
-import {Timestamp} from '@angular/fire/firestore';
-import {ToastService} from '../../../../shared/services/toast.service';
+import { Component, inject, OnInit } from '@angular/core';
+import { UbigeoService } from '../../../../shared/services/ubigeo.service';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { NgForOf } from '@angular/common';
+import { StoresService } from '../../stores.service';
+import { Store } from '../../store';
+import { AuthService } from '../../../auth/services/auth.service';
+import { Timestamp } from '@angular/fire/firestore';
+import { ToastService } from '../../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-stores-new',
@@ -34,8 +40,8 @@ export class StoresNewComponent implements OnInit {
       code: ['', Validators.required],
       name: ['', Validators.required],
       state: ['', Validators.required],
-      province: [{value: '', disabled: true}, Validators.required],
-      district: [{value: '', disabled: true}, Validators.required],
+      province: [{ value: '', disabled: true }, Validators.required],
+      district: [{ value: '', disabled: true }, Validators.required],
     });
   }
 
@@ -72,6 +78,8 @@ export class StoresNewComponent implements OnInit {
     if (this.newForm.valid) {
       const uid = this.auth.uid;
       const newStore: Store = this.newForm.value;
+      newStore.name = newStore.name.toUpperCase();
+      newStore.code = newStore.code.toUpperCase();
       newStore.createdBy = uid ?? '';
       newStore.createdAt = Timestamp.now();
       newStore.updatedBy = uid ?? '';
@@ -82,10 +90,11 @@ export class StoresNewComponent implements OnInit {
         this.newForm.reset();
         this.newForm.get('province')?.disable();
         this.newForm.get('district')?.disable();
-        this.toastService.showSuccess("Tienda registrada con exito!");
-
+        this.toastService.showSuccess('Tienda registrada con exito!');
       } catch (e) {
-        this.toastService.showError(`No se pudo registrar la tienda, error: ${e}`);
+        this.toastService.showError(
+          `No se pudo registrar la tienda, error: ${e}`
+        );
         console.log(e);
       }
     } else {
