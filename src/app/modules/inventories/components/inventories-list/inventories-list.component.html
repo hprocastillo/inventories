@@ -1,5 +1,5 @@
-<!--*****************************-->
-<!--********** HEADER ***********-->
+<!--******************-->
+<!--***** HEADER *****-->
 <div class="card shadow rounded border-light-subtle ps-3 pt-3 pe-3 pb-2 mb-2">
   <div class="row">
 
@@ -51,6 +51,7 @@
         <th scope="col">#</th>
         <th scope="col">CÓDIGO</th>
         <th scope="col">TIENDA</th>
+        <th scope="col"></th>
         <th scope="col">ESTADO</th>
         <th scope="col">PRODUCTOS CONTADOS</th>
         <th scope="col">F. INICIO</th>
@@ -65,8 +66,13 @@
         <td>INV-CHO-003</td>
         <td>CHORRILLOS 01</td>
         <td>
-          <a class="text-decoration-none text-success fw-medium"
-             [routerLink]="['/inventories/view','INV-CHO01-001' ]">Abierto</a>
+          <button type="button" class="btn btn-primary btn-sm"
+                  (click)="router.navigate(['/inventories/view','INV-CHO01-001' ])">
+            <i class="fa-solid fa-list-check"></i>
+          </button>
+        </td>
+        <td>
+          <span class="text-decoration-none text-success fw-medium">Abierto</span>
         </td>
         <td>
           <span class="text-success fw-medium">356</span>
@@ -74,17 +80,22 @@
           <span class="text-danger fw-medium">380</span>
         </td>
         <td>Junio, 1 - 2025</td>
-        <td>Junio, 5 - 2025</td>
+        <td><span class="text-muted">En proceso. . .</span></td>
         <td>Herbert Pro</td>
-        <td>Junio, 5 - 2025</td>
+        <td>Junio, 3 - 2025</td>
       </tr>
       <tr class="text-nowrap">
         <th scope="row">2</th>
         <td>INV-BAR-002</td>
         <td>BARRANDO 04</td>
         <td>
-          <a class="text-decoration-none text-secondary fw-medium"
-             [routerLink]="['/inventories/view','INV-CHO01-001' ]">Cerrado</a>
+          <button type="button" class="btn btn-secondary btn-sm"
+                  (click)="router.navigate(['/inventories/view','INV-CHO01-001' ])">
+            <i class="fa-solid fa-list-check"></i>
+          </button>
+        </td>
+        <td>
+          <span class="text-decoration-none text-secondary fw-medium">Cerrado</span>
         </td>
         <td>
           <span class="text-success fw-medium">890</span>
@@ -101,8 +112,13 @@
         <td>INV-CHO-004</td>
         <td>CHORRILLOS 04</td>
         <td>
-          <a class="text-decoration-none text-secondary fw-medium"
-             [routerLink]="['/inventories/view','INV-CHO01-001' ]">Cerrado</a>
+          <button type="button" class="btn btn-secondary btn-sm"
+                  (click)="router.navigate(['/inventories/view','INV-CHO01-001' ])">
+            <i class="fa-solid fa-list-check"></i>
+          </button>
+        </td>
+        <td>
+          <span class="text-decoration-none text-secondary fw-medium">Cerrado</span>
         </td>
         <td>
           <span class="text-success fw-medium">200</span>
